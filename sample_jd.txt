@@ -1,0 +1,4 @@
+We are looking for a Full Stack Software Engineer.
+Required skills: Python, React, FastAPI, SQL.
+Nice to have: Docker, AWS, Kubernetes, Machine Learning.
+You should have at least 3 years of experience building web applications.

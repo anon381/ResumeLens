@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+env/
+venv/
+backend/venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# Pytest
+.pytest_cache/
+
+# Virtualenv
+.venv/
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Vite / Frontend build
+frontend/dist/
+/dist/
+.vite/
+
+# Logs
+logs/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Coverage
+htmlcov/
+.coverage
+coverage.xml
+
+# PyInstaller
+*.manifest
+*.spec
+
+# System
+Thumbs.db
+
+# Misc
+*.swp
+*.swo
+
+# Sensitive files
+secrets.json
+credentials.json
+
+# SQLite DB
+*.sqlite3
+
+# Compiled extensions
+*.so
+
+# npm debug
+npm-debug.log*
+
+# yarn
+yarn-debug.log*
+yarn-error.log*

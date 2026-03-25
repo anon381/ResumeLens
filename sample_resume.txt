@@ -1,0 +1,7 @@
+John Doe
+Software Engineer
+Skills: Python, Django, React, Javascript, HTML, CSS, SQL, FastAPI, Docker.
+Experience:
+- 3 years as a backend engineer using Python.
+- Developed multiple REST APIs and single page applications using React.
+Education: B.S. in Computer Science.
