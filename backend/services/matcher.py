@@ -64,15 +64,22 @@ def calculate_match(resume_text: str, jd_text: str) -> MatchResult:
     else:
         recruiter_summary = "⚠️ Potential Risk. Resume lacks significant overlap with critical job requirements. Proceed with caution."
 
-    # Simulated market trends based on jd skills
-    tech_trends = ["Kubernetes", "GraphQL", "TypeScript", "CI/CD", "TailwindCSS", "AWS Lambdas"]
-    market_trends = [t for t in tech_trends if t.lower() not in resume_words][:3]
-    if not market_trends:
+    # Market trends: only surface trends that are actually present in the JD but
+    # missing from the resume. This avoids showing a constant generic list.
+    TECH_TRENDS = ["kubernetes", "graphql", "typescript", "ci/cd", "tailwindcss", "aws lambdas", "docker", "aws", "machine learning"]
+    jd_lower = set(w.lower() for w in jd_words)
+    resume_lower = set(w.lower() for w in resume_words)
+    relevant_trends = [t for t in TECH_TRENDS if t in jd_lower and t not in resume_lower]
+    if relevant_trends:
+        # Present them with nicer casing for the frontend
+        market_trends = [t.title().replace("Ci/Cd", "CI/CD") for t in relevant_trends[:3]]
+    else:
         market_trends = ["No immediate trend warnings."]
 
     # NEW FEATURE: Resume Impact Analysis (Action Verbs and Metrics)
     strong_verbs_list = {"developed", "managed", "led", "architected", "designed", "optimized", "increased", "decreased", "spearheaded", "implemented", "created", "reduced", "delivered", "built"}
-    found_verbs = list(strong_verbs_list.intersection(set(resume_text.lower().split())))
+    resume_word_set = set(resume_words)
+    found_verbs = list(strong_verbs_list.intersection(resume_word_set))
     
     # Simple regex to find quantifiable metrics (numbers, percentages, dollar amounts)
     metrics = re.findall(r'\b\d+(?:\.\d+)?%?|\$\d+(?:\.\d+)?\b', resume_text)
@@ -80,8 +87,22 @@ def calculate_match(resume_text: str, jd_text: str) -> MatchResult:
 
     if metrics_count == 0:
         suggestions.append("Add quantifiable metrics (numbers, %, $) to prove your impact.")
-    if len(found_verbs) < 3:
-        suggestions.append("Use more strong action verbs (e.g., 'Architected', 'Optimized') to start your bullet points.")
+
+    # Detect weak verbs and suggest stronger alternatives only when applicable
+    weak_verbs = {"helped", "assisted", "worked", "participated", "supported"}
+    weak_found = list(weak_verbs.intersection(resume_word_set))
+    if weak_found:
+        suggestions.append("Avoid weak verbs such as: " + ", ".join(sorted(set(weak_found))) + ". Use stronger, outcome-oriented verbs instead (e.g., 'Architected', 'Optimized', 'Spearheaded').")
+    elif len(found_verbs) < 3:
+        # If not many strong verbs are present, suggest concrete replacements
+        missing_suggested = [v.title() for v in list(strong_verbs_list - resume_word_set)[:4]]
+        suggestions.append("Add stronger action verbs to lead bullet points (examples: " + ", ".join(missing_suggested) + ").")
+
+    # Small smoothing: avoid returning an absolute 0% when both documents contain text
+    # but have no exact keyword overlap. A minimal floor improves UX and avoids
+    # alarming zero-percent outputs while keeping relative ordering intact.
+    if match_score == 0.0 and resume_text.strip() and jd_text.strip():
+        match_score = 5.0
 
     return MatchResult(
         match_score=match_score,
