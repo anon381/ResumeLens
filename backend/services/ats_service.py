@@ -97,6 +97,7 @@ def calculate_match(resume_text: str, jd_text: str) -> MatchResult:
     return MatchResult(
         match_score=match_score,
         score_breakdown=score_breakdown,
+        ats_score=ats_score,
         matched_skills=matched_skills[:12],
         missing_critical_skills=critical_missing[:6],
         missing_nice_to_have_skills=nice_to_have[:6],

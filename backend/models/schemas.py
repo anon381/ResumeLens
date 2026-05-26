@@ -19,6 +19,7 @@ class ScoreBreakdown(BaseModel):
 class MatchResult(BaseModel):
     match_score: float
     score_breakdown: ScoreBreakdown
+    ats_score: float
     matched_skills: List[str]
     missing_critical_skills: List[str]
     missing_nice_to_have_skills: List[str]
