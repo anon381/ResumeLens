@@ -38,14 +38,15 @@ export default function MatchResults({ results, onReset }) {
       </motion.button>
 
       {/* Recruiter Summary Hero */}
-      <motion.div variants={cardVariants} className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 relative overflow-hidden shadow-2xl border border-slate-700">
-        <div className="absolute top-0 right-0 p-8 opacity-10">
-          <Presentation className="w-32 h-32 text-white" />
-        </div>
-        <h2 className="text-slate-400 text-sm font-bold tracking-widest uppercase mb-3 flex items-center">
+      <motion.div variants={cardVariants} className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200">
+        <h2 className="text-slate-800 text-sm font-bold tracking-widest uppercase mb-3 flex items-center">
+          <div className="absolute top-0 right-0 p-8 opacity-10">
+            <Presentation className="w-32 h-32 text-white" />
+          </div>
+        
           <UserCheck className="w-4 h-4 mr-2" /> Recruiter's Take - Recommended Role: <span className="ml-2 text-indigo-400">{role_classification}</span>
         </h2>
-        <p className="text-2xl md:text-3xl font-medium text-white leading-tight max-w-3xl relative z-10">
+        <p className="text-2xl md:text-3xl font-medium text-slate-900 leading-tight max-w-3xl relative z-10">
           "{recruiter_summary}"
         </p>
       </motion.div>
