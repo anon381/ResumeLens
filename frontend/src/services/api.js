@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:8000/api';
+// Use environment variable if available, fallback to localhost for development
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 export async function parseResumeFile(file) {
   const formData = new FormData();

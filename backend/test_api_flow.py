@@ -28,6 +28,6 @@ results = analyze_resp.json()
 
 print("\n--- RESULTS FROM BACKEND ENDPOINT ---")
 print(f"Overall Match Score: {results['match_score']}%")
-print(f"ATS Score: {results['ats_score']}%")
+print(f"ATS Compatibility Score: {results['score_breakdown']['ats_compatibility']}%")
 print(f"Key Suggestions: {len(results['suggestions'])}")
 print("End-to-End API is working dynamically!")

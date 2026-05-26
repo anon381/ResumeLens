@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, AlertTriangle, TrendingUp, Presentation, BriefcaseBusiness, UserCheck, Flame } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, AlertTriangle, TrendingUp, Presentation, BriefcaseBusiness, UserCheck, Flame, FileText } from 'lucide-react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -20,7 +20,7 @@ const cardVariants = {
 };
 
 export default function MatchResults({ results, onReset }) {
-  const { match_score, matched_skills, missing_critical_skills, missing_nice_to_have_skills, suggestions, ats_score, recruiter_summary, market_trends, quantifiable_metrics_count = 0, strong_action_verbs = [] } = results;
+  const { match_score, score_breakdown = {}, matched_skills, missing_critical_skills, missing_nice_to_have_skills, suggestions, rewrite_suggestions = [], ats_score, recruiter_summary, market_trends, quantifiable_metrics_count = 0, strong_action_verbs = [], role_classification = 'Not Classified', extracted_sections = {} } = results;
 
   const scoreColor = match_score >= 80 ? 'text-emerald-500' : match_score >= 60 ? 'text-amber-500' : 'text-rose-500';
   const strokeColor = match_score >= 80 ? '#10b981' : match_score >= 60 ? '#f59e0b' : '#f43f5e';
@@ -43,7 +43,7 @@ export default function MatchResults({ results, onReset }) {
           <Presentation className="w-32 h-32 text-white" />
         </div>
         <h2 className="text-slate-400 text-sm font-bold tracking-widest uppercase mb-3 flex items-center">
-          <UserCheck className="w-4 h-4 mr-2" /> Recruiter's Take
+          <UserCheck className="w-4 h-4 mr-2" /> Recruiter's Take - Recommended Role: <span className="ml-2 text-indigo-400">{role_classification}</span>
         </h2>
         <p className="text-2xl md:text-3xl font-medium text-white leading-tight max-w-3xl relative z-10">
           "{recruiter_summary}"
@@ -83,7 +83,14 @@ export default function MatchResults({ results, onReset }) {
                 </div>
               </div>
             </div>
-            <p className="text-sm text-slate-500 font-medium text-center px-6">Calculated using TF-IDF AI Cosine Similarity + Semantic Keyword mappings.</p>
+            <p className="text-sm text-slate-500 font-medium text-center px-6 mb-4">Final Score Composition</p>
+            <div className="w-full px-6 space-y-2 pb-4">
+              <div className="flex justify-between text-sm"><span className="text-slate-500">ATS formatting</span><span className="font-bold text-slate-700">{score_breakdown.formatting ?? 0}/100</span></div>
+              <div className="flex justify-between text-sm"><span className="text-slate-500">Semantic Match</span><span className="font-bold text-slate-700">{score_breakdown.semantic_match ?? 0}/100</span></div>
+              <div className="flex justify-between text-sm"><span className="text-slate-500">Skill Coverage</span><span className="font-bold text-slate-700">{score_breakdown.skill_coverage ?? 0}/100</span></div>
+              <div className="flex justify-between text-sm"><span className="text-slate-500">Impact Metrics</span><span className="font-bold text-slate-700">{score_breakdown.impact_metrics ?? 0}/100</span></div>
+              <div className="flex justify-between text-sm"><span className="text-slate-500">Experience Quality</span><span className="font-bold text-slate-700">{score_breakdown.experience_quality ?? 0}/100</span></div>
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-6">
@@ -210,21 +217,40 @@ export default function MatchResults({ results, onReset }) {
         <motion.div variants={cardVariants} className="bg-purple-50/80 p-8 rounded-3xl border border-purple-100 backdrop-blur-xl">
            <h3 className="text-lg font-extrabold text-purple-900 mb-5 flex items-center">
             <TrendingUp className="w-5 h-5 mr-3 text-purple-500" />
-            Market Competitiveness (Missing Trends)
+            Rewrite Suggestions
           </h3>
           <p className="text-sm font-medium text-purple-800/80 mb-5 leading-relaxed">
-            Based on millions of recent hires, these skills mentioned in the job description are highly demanded in the current market and you should prioritize learning them.
+            Strengthen your impact by replacing weak descriptions with results-driven accomplishments.
           </p>
-          <div className="flex flex-wrap gap-3">
-            {market_trends.map((trend, i) => (
-              <div key={i} className="flex items-center bg-white px-4 py-2.5 rounded-xl text-sm font-bold text-purple-700 shadow-sm border border-purple-100/50">
-                <TrendingUp className="w-4 h-4 mr-2 opacity-50" />
-                {trend}
+          <div className="space-y-4">
+            {rewrite_suggestions.map((rw, i) => (
+              <div key={i} className="bg-white p-4 rounded-xl shadow-sm border border-purple-100/50">
+                <div className="text-xs text-rose-500 font-bold mb-1">Bad: "{rw.original}"</div>
+                <div className="text-sm text-emerald-600 font-bold">Good: "{rw.improved}"</div>
               </div>
             ))}
+            {rewrite_suggestions.length === 0 && <p className="text-sm text-slate-500 italic">No major rewrite suggestions found.</p>}
           </div>
         </motion.div>
       </div>
+
+      {/* Structured Resume Sections */}
+      <motion.div variants={cardVariants} className="bg-white/80 p-8 rounded-3xl border border-slate-200 backdrop-blur-xl mb-12 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+        <h3 className="text-lg font-extrabold text-slate-800 mb-5 flex items-center">
+          <FileText className="w-5 h-5 mr-3 text-emerald-500" />
+          Resume Section Detection
+        </h3>
+        <p className="text-sm text-slate-500 mb-6">Our parser identified the following key sections from your document. If anything looks missing, reviewing your formatting might improve ATS compatibility.</p>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {Object.entries(extracted_sections).map(([section, content], idx) => (
+            <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+              <h4 className="text-sm font-bold text-slate-700 capitalize mb-2">{section}</h4>
+              <p className="text-xs text-slate-600 line-clamp-3">{content}</p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
 
     </motion.div>
   );

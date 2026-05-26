@@ -1,8 +1,8 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from typing import Optional
 from models.schemas import MatchResult, JobDescriptionInput
-from services.parser import parse_resume
-from services.matcher import calculate_match
+from services.parser_service import parse_resume
+from services.ats_service import calculate_match
 
 router = APIRouter()
 
