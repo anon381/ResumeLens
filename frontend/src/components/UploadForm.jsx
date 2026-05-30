@@ -63,7 +63,7 @@ export default function UploadForm({ onAnalyze }) {
           <UploadCloud className="w-7 h-7 text-slate-700" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Analysis Configuration</h2>
+          <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Analysis-Configuration</h2>
           <p className="text-sm text-slate-500 font-medium mt-1">Provide your documents below to begin.</p>
         </div>
       </motion.div>
@@ -83,7 +83,7 @@ export default function UploadForm({ onAnalyze }) {
         <motion.div variants={itemVariants}>
           <label className="flex items-center text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">
             <FileText className="w-4 h-4 mr-2 text-indigo-500" />
-            Resume Document (PDF/DOCX/TXT)
+            Resume Document (PDF || DOCX)
           </label>
           <div 
             className={`border-2 border-dashed rounded-2xl p-10 text-center transition-all duration-300 relative group overflow-hidden ${isHovering ? 'border-indigo-500 bg-indigo-50/50' : 'border-slate-300 hover:border-indigo-400 hover:bg-slate-50'}`}
