@@ -4,8 +4,6 @@ ResumeLens is an AI-powered resume analyzer that helps job seekers tailor their 
 
 <!-- Badges (replace with real URLs if desired) -->
 
-- Build: ![build badge](https://img.shields.io/badge/build-passing-brightgreen)
-- License: ![license badge](https://img.shields.io/badge/license-MIT-blue)
 
 ## Overview
 
@@ -52,7 +50,17 @@ cd frontend
 npm ci
 npm run dev
 ```
+# Assignment Overview
 
-Open the frontend at http://localhost:5173 and confirm the API URL points to the backend (use `VITE_API_URL` env var if needed).
+This project serves as a machine‑learning engineering assignment, showcasing an end‑to‑end pipeline that parses resumes, extracts features, and matches them against a job description. The core ML components include:
+
+- **Data ingestion & parsing** – PDF resumes are processed using `pypdf` to extract raw text.
+- **Feature engineering** – Text is transformed into TF‑IDF vectors, enabling semantic similarity calculations.
+- **Modeling** – Cosine similarity scores the semantic fit, complemented by curated keyword mappings for ATS compliance.
+- **Evaluation & feedback** – The system returns a match score, ATS/format score, quantified impact metrics, and actionable suggestions to improve the resume.
+- **Deployment considerations** – The backend runs as a FastAPI service inside a Python virtual environment, while the lightweight React + Vite frontend visualises results.
+
+Run the backend and frontend as described in the Quick Start section to experience the full ML pipeline in action.
+
 
 
