@@ -1,13 +1,13 @@
-# ResumeLens
+# Smart CV Analyzer
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-🚀-brightgreen)](https://resume-lens-tau.vercel.app/)
-ResumeLens is an AI-powered resume analyzer that helps job seekers tailor their resumes to job descriptions and improve interview readiness. It combines traditional keyword/ATS checks with a TF–IDF + cosine-similarity semantic matcher to produce actionable recommendations.
+Smart CV Analyzer is an AI-powered resume analyzer that helps job seekers tailor their resumes to job descriptions and improve interview readiness. It combines traditional keyword/ATS checks with a TF–IDF + cosine-similarity semantic matcher to produce actionable recommendations.
 
 <!-- Badges (replace with real URLs if desired) -->
 
 
 ## Overview
 
-ResumeLens analyzes uploaded resumes (PDF/text) against a target job description and returns:
+Smart CV Analyzer analyzes uploaded resumes (PDF/text) against a target job description and returns:
 
 - An overall match score (hybrid keyword + semantic TF–IDF score)
 - An ATS/format score to surface formatting issues
