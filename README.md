@@ -1,5 +1,5 @@
 # ResumeLens
-
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-🚀-brightgreen)](https://resume-lens-tau.vercel.app/)
 ResumeLens is an AI-powered resume analyzer that helps job seekers tailor their resumes to job descriptions and improve interview readiness. It combines traditional keyword/ATS checks with a TF–IDF + cosine-similarity semantic matcher to produce actionable recommendations.
 
 <!-- Badges (replace with real URLs if desired) -->
