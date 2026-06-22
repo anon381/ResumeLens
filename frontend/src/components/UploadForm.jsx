@@ -1,3 +1,4 @@
+// Component for file uploading and job description input.
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { UploadCloud, FileText, Briefcase, ChevronRight, Loader2, AlertCircle } from 'lucide-react';

@@ -1,3 +1,4 @@
+# Service for extracting text from uploaded resumes.
 import io
 import re
 from pypdf import PdfReader

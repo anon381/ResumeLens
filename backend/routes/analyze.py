@@ -1,3 +1,4 @@
+# Handles API endpoints for resume analysis.
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from typing import Optional
 from models.schemas import MatchResult, JobDescriptionInput

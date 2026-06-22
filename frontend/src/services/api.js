@@ -1,3 +1,4 @@
+// API client for communicating with the backend.
 const BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/+$/, "") || "http://localhost:8000";
 const API_URL = `${BASE_URL}/api`;
 

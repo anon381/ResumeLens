@@ -1,3 +1,4 @@
+// Component displaying the analysis and match results.
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, AlertTriangle, TrendingUp, Presentation, BriefcaseBusiness, UserCheck, Flame, FileText } from 'lucide-react';

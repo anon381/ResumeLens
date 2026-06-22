@@ -1,3 +1,4 @@
+[Sample Job Description for testing the pipeline]
 We are looking for a Full Stack Software Engineer.
 Required skills: Python, React, FastAPI, SQL.
 Nice to have: Docker, AWS, Kubernetes, Machine Learning.

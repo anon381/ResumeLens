@@ -1,1 +1,2 @@
+# Procfile for deploying the FastAPI app to Render or Heroku.
 web: uvicorn main:app --host 0.0.0.0 --port $PORT

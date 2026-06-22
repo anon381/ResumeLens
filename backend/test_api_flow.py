@@ -1,3 +1,4 @@
+# Tests the main API flow endpoints.
 import requests
 import json
 
