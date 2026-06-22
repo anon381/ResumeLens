@@ -11,7 +11,7 @@ build/
 .eggs/
 pip-wheel-metadata/
 
-# Pytest
+# Py-test
 .pytest_cache/
 
 # Virtualenv
