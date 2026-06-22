@@ -55,18 +55,4 @@ npm run dev
 
 Open the frontend at http://localhost:5173 and confirm the API URL points to the backend (use `VITE_API_URL` env var if needed).
 
-## Deployment
 
-Deployment recommendations and step-by-step instructions are included in [DEPLOY.md](DEPLOY.md).
-
-## Contributing
-
-Contributions are welcome. Open an issue to propose changes or submit a pull request with a clear description and tests where applicable.
-
-## License
-
-This project is available under the MIT License. See the `LICENSE` file for details.
-
-## Contact
-
-If you need help or want this project adapted for a specific role or pipeline, open an issue or contact the maintainer.
